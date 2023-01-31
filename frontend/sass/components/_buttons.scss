@@ -1,0 +1,113 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: $button-bg-color;
+  border-radius: $button-border-radius;
+  border: $button-border;
+  font-family: $button-font;
+  color: $button-color;
+  text-decoration: none;
+  padding: $button-padding;
+  font-weight: $button-font-weight;
+  &:hover {
+    @include button-hover;
+  }
+  &--primary {
+    background-color: $button-primary-bg;
+    @include hover-modifier($button-primary-bg);
+  }
+  &--second {
+    background-color: $button-second-bg;
+    @include hover-modifier($button-second-bg);
+  }
+  &--third {
+    background-color: $button-third-bg;
+    @include hover-modifier($button-third-bg);
+  }
+  &--grey {
+    background-color: $button-grey-bg;
+    @include hover-modifier($button-grey-bg);
+  }
+  &--log-out {
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  &--start {
+    font-size: $button-log-in-size;
+    background-color: $button-third-bg;
+    @include hover-modifier($button-third-bg);
+    width: 60%;
+    padding: 5px;
+    @media (max-width: 950px) {
+      font-size: 1.3rem;
+      padding: 0.1rem 0.5rem;
+    }
+  }
+  &--log-in {
+    font-size: $button-log-in-size;
+    padding: $button-log-in-padding;
+    height: 4rem;
+    &--with-ft {
+      height: 6rem;
+      border-radius: 15px;
+      gap: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+  &--create-chan {
+    margin: 10px;
+    @include hover-modifier($button-grey-bg);
+  }
+  &--fourth {
+    background-color: rgb(163, 0, 0);
+    @include hover-modifier(red);
+  }
+  &--selector {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: grey 1px solid;
+    color: grey;
+    &:hover {
+      color: $button-third-bg;
+      border: 1px $button-third-bg solid;
+    }
+    &--on {
+      color: white;
+      background-color: $button-third-bg;
+      &:hover {
+        color: white;
+        background-color: $button-third-bg;
+      }
+    }
+  }
+  &--invitation {
+    padding: 0.1rem 0.6rem;
+    &--cancel {
+      background-color: grey;
+      &:hover {
+        background-color: darken(grey, 15);
+      }
+    }
+    &--pending {
+      padding: 0.2rem 0.5rem;
+    }
+    &--decline {
+      padding: 0.2rem 0.5rem;
+      background-color: rgb(50, 50, 50);
+      &:hover {
+        background-color: darken(rgb(50, 50, 50), 15);
+      }
+    }
+  }
+}
+
+.button-log-in__logo {
+  width: 3rem;
+  height: auto;
+}

@@ -1,0 +1,102 @@
+07/10/21
+
+- only locally store messages from the activeChannel (NOT ALL CHANNELS)
+- when changing channel, api call to get channel messages 
+
+
+- innerjoin typeorm
+- typeorm db relations: https://www.youtube.com/watch?v=rKgZLVgdvAY
+- typeorm queryBuilder
+- how to secure a websocket connection? access token?
+
+ESTELLE: 
+  - A PROPER PLAN:
+    - give up channel-member relation for now
+    - get channels db to work 
+        - delete channel
+        - join/leave channel
+
+    - get messages to work
+      - Compulsory:
+        - write message
+          - save it to db
+          - sync local message array
+          - publish it to the chat
+
+    - get channel relationships to work:
+      - instead of syncing all channels,
+        only sync joined channels (aka membership table elements)
+        joinable channels...
+    
+  - add endpoint for available channels (non-joined publics chans)
+- endpoints for current logged in user id? login? username?
+
+30/09/21
+
+-> DB VS CHAT:
+    add user <-> channel relationship (joined)
+    muted/banned: what is "time"? is it a delay? if so we need a starting date. or 
+    we make muting/banning permanent and just note the starting time. 
+    Message writer_id > change it to author_id
+    Swagger seems to transform dto from "channel_id" into "channelId", no biggie but a bit annoying
+
+-> GENERAL:
+  Ids should be a number. Let's put ids everywhere for a uniform db.
+  TYPEORM IS NOT MAINTAINED AND APPARENTLY FULL OF BUGS. (portions of queries ignored?)
+  Alternative: MikroORM? 
+
+-> julnolle working on auth (front/back communication/CORS issues). Set db synchronization to true,
+no need to update entrypoint.sh for db building
+-> bbrunet working on pong. Added namespaces for socket versatility. No db sync yet
+-> rturcey built visual planning, working up to a front skeleton
+-> esoulard working on chat, had a beef with swagger, starting db sync
+------------------------------------------------------------
+
+23/09/21
+1) git: PR? shared access? 
+  > Sharing this repo! group it with julnolle content
+2) DefaultAPI from sdk: qu'est-ce qui est généré exactement ? 
+  > TOUT
+   Tous les fichiers dans sdk? ça copie les fonctions du back ? 
+  > OUI
+3) Discuss trello orga? 
+  > OK
+4) LE CHAT UTILISE T IL LA DB? 
+  > It will! 
+  LE JEU ?
+  > Probably not, en tout cas pas les positions de jeu exactement
+  EST-CE QUE LES SOCKETS EPARGNENT LA DB? 
+  > yup! c'est tout l'intérêt (ne pas avoir à faire de requêtes serveur)
+
+Study Ideas
+- TS (netninja tuto: https://www.youtube.com/watch?v=2pZmKW9-I_k&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI)
+  + study decorators  
+- dto (intermédiaire pour ne pas exposer direct les obj de db) + mise en place DB:
+https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
+- orga DB + schema db julnolle:
+https://www.youtube.com/channel/UC_emPzF9DZgK05QedIqbNDg/playlists
+https://dbdiagram.io/d/6148c3e3825b5b01460af366
+- share github access ? copy files from julnolle repo to mine, copy hidden files from root: OK
+- cleanup trello
+- choisir une fonctionnalité au choix sur trello et s'y incrire pour la dev
+
+------------------------------------------------------------
+
+16/09/21
+
+1) Qui connait quoi ?
+julien: docker, db, chat
+basile: html css JS nestJS
+richard: html css JS 
+estelle: html css JS
+
+2) Quel plan d'attaque ? Par où commencer ? 
+Docker > DB > profiles > user ranks > chat > game
+---login
+3) Reu 1x par semaine ? Quel jour/heure? 42/Discord ?
+Jeudi 10h
+
+------------------------------------------------------------
+
+
+

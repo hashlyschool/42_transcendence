@@ -1,0 +1,16 @@
+.user-account {
+  width: 1000px;
+  height: 700px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 2rem;
+  @media (max-width: 1100px) {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,139 @@
+.profile {
+  width: $profile-width;
+  height: $profile-height;
+  display: flex;
+  color: white;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2rem;
+  gap: 2rem;
+  @media (max-width: 1200px) {
+    width: 850px;
+  }
+  @media (max-width: 950px) {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 0;
+    margin: 0;
+    padding: 2rem;
+  }
+}
+
+.profile-left {
+  background-color: $div-bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $profile-left-gap;
+  border-radius: 10px;
+  padding: 0 2rem;
+  width: 100%;
+  @media (max-width: 1200px) {
+    padding: 1rem;
+  }
+  @media (max-width: 950px) {
+    border-radius: 0;
+    justify-content: flex-start;
+  }
+  @media (max-width: 800px) {
+    padding: 1rem;
+  }
+}
+
+.profile-left-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 950px) {
+    width: 70%;
+  }
+}
+
+.profile-left__avatar-div {
+  width: $profile-avatar-width;
+  height: auto;
+}
+
+.profile-left__avatar-img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+
+.profile-left__name {
+  font-family: $profile-left-name-font;
+  font-size: $profile-left-name-size;
+}
+
+.profile-left__since {
+  font-family: "Saira";
+}
+
+.profile-left__status {
+  font-family: "Saira";
+}
+
+.profile-left__social {
+  margin: $profile-social-margin;
+  width: $profile-social-width;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $profile-social-gap;
+  @media (max-width: 950px) {
+    width: 40%;
+  }
+  @media (max-width: 400px) {
+    width: 50%;
+  }
+}
+
+.profile-left__blocked-msg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-family: "Saira";
+  font-size: 1.2rem;
+  color: grey;
+}
+
+.profile-stats {
+  background-color: $div-bg-color;
+  border-radius: 10px;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: $profile-stats-width;
+  height: 100%;
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
+  @media (max-width: 950px) {
+    border-radius: 0;
+  }
+  @media (max-width: 800px) {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.status {
+  &--online {
+    color: $status-online-color;
+  }
+  &--in-game {
+    color: $status-in-game-color;
+  }
+  &--offline {
+    color: $status-offline-color;
+  }
+}
+
+.upload-icon {
+  margin-left: 0.5rem;
+}

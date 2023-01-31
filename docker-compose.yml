@@ -1,0 +1,87 @@
+version: "3"
+
+services:
+  # backend Service with nestjs-express framework
+  backend:
+    build:
+      context: "./backend"
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "${BACK_PORT}:${BACK_PORT}"
+    networks:
+      - network
+    environment:
+      NODE_ENV: production
+      MODE: DEV
+      PORT: ${BACK_PORT}
+      FRONT_URL: ${FRONT_URL}
+      FRONT_URL_BIS: ${FRONT_URL_BIS}
+      BASE_URL: ${API_URL}
+    env_file:
+      - credentials.env
+      - game.env
+    command: sh -c "npm install && npm run start:prod"
+    depends_on:
+      - postgres
+
+  # frontend Service with vuejs framework
+  frontend:
+    build:
+      context: "./frontend"
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
+    networks:
+      - network
+    environment:
+      NODE_ENV: production
+      VUE_APP_API_URL: ${API_URL}
+      VUE_APP_42_AUTH_URL: ${AUTH_URL}
+      NODE_OPTIONS: --openssl-legacy-provider
+    env_file:
+      - game.env
+    depends_on:
+      - postgres
+      - backend
+
+  # PostgreSQL Service
+  postgres:
+    image: postgres:${POSTGRES_VERSION}
+    networks:
+      - network
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    container_name: ${POSTGRES_NAME}
+
+  # Adminer Service (database management tool)
+  adminer:
+    image: adminer:${ADMINER_VERSION}
+    networks:
+      - network
+    restart: always
+    ports:
+      - "9000:${FRONT_PORT}"
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: ${DB_DRIVER}
+      ADMINER_DEFAULT_SERVER: ${DB_HOST}
+      ADMINER_DEFAULT_DB_NAME: ${DB_NAME}
+    depends_on:
+      - postgres
+
+  # Networks
+networks:
+  network:
+
+volumes:
+  postgresdata:
