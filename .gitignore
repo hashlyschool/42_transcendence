@@ -16,5 +16,5 @@ frontend/sdk/typescript-axios-client-generated
 npm-errors
 .vscode
 
-# .env
-# database.env
+.env
+credentials.env
